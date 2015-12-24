@@ -4560,6 +4560,15 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Show 4G instead of LTE
+         * @hide
+         */
+        public static final String SHOW_FOURG = "show_fourg";
+
+        /** @hide */
+        public static final Validator SHOW_FOURG_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -4749,6 +4758,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS_LANDSCAPE);
             PRIVATE_SETTINGS.add(QS_LAYOUT_COLUMNS);
             PRIVATE_SETTINGS.add(QS_TILE_TITLE_VISIBILITY);
+            PRIVATE_SETTINGS.add(SHOW_FOURG);
         }
 
         /**
@@ -4848,6 +4858,7 @@ public final class Settings {
                     QS_LAYOUT_COLUMNS_LANDSCAPE_VALIDATOR);
             VALIDATORS.put(QS_LAYOUT_COLUMNS, QS_LAYOUT_COLUMNS_VALIDATOR);
             VALIDATORS.put(QS_TILE_TITLE_VISIBILITY, QS_TILE_TITLE_VISIBILITY_VALIDATOR);
+            VALIDATORS.put(SHOW_FOURG, SHOW_FOURG_VALIDATOR);
         }
 
         /**
