@@ -155,4 +155,9 @@
 
     <!-- Alerting notification header label -->
     <string name="notification_section_header_alerting">Alerting notifications</string>
+
+    <!-- App lock -->
+    <string name="applock_locked">&#160;is Locked.</string>
+    <string name="applock_fingerprint">&#160;or your fingerprint to unlock.</string>
+    <string name="applock_locked_notification">App is locked</string>
 </resources>
