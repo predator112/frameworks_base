@@ -201,7 +201,6 @@ public class MobileSignalController extends SignalController<
          */
         @Override
         public void onChange(boolean selfChange, Uri uri) {
-
              updateSettings();
         }
     }
