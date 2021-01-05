@@ -300,9 +300,6 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                 new DebugFlag("persist.pre_render_ime_views", false);
     }
 
-    // Long screenshot
-    private boolean mLongshotBlockShowing = false;
-
     @UserIdInt
     private int mLastSwitchUserId;
 
@@ -2852,11 +2849,6 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
             return false;
         }
 
-        if (mLongshotBlockShowing) {
-            Slog.d(TAG, "Longshot Blocking");
-            return false;
-        }
-
         boolean res = false;
         if (mCurMethod != null) {
             if (DEBUG) Slog.d(TAG, "showCurrentInputLocked: mCurToken=" + mCurToken);
@@ -2920,27 +2912,6 @@ public class InputMethodManagerService extends IInputMethodManager.Stub
                 }
 
                 if (DEBUG) Slog.v(TAG, "Client requesting input be hidden");
-                return hideCurrentInputLocked(flags, resultReceiver);
-            } finally {
-                Binder.restoreCallingIdentity(ident);
-            }
-        }
-    }
-
-    @Override
-    public boolean hideSoftInputForLongshot(int flags, ResultReceiver resultReceiver) {
-        synchronized (mMethodMap) {
-            if (!calledFromValidUserLocked()) {
-                return false;
-            }
-            final long ident = Binder.clearCallingIdentity();
-            try {
-                mLongshotBlockShowing = true;
-                mHandler.postDelayed(new Runnable() {
-                    public void run() {
-                        mLongshotBlockShowing = false;
-                    }
-                }, LONGSHOT_BLOCK_SHOWING_TIMEOUT);
                 return hideCurrentInputLocked(flags, resultReceiver);
             } finally {
                 Binder.restoreCallingIdentity(ident);
